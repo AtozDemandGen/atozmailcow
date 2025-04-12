@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  acs-relay:
+    build:
+      context: ./acs-relay
+    container_name: acs-relay
+    ports:
+      - "2525:2525"
+    restart: always
+    environment:
+      - AZURE_CONNECTION_STRING=${AZURE_CONNECTION_STRING}
+    networks:
+      - mailcow-network
+
+networks:
+  mailcow-network:
+    external: true
+    name: mailcowdockerized_mailcow-network
